@@ -7,6 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="245*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="238*"/>
+            <RowDefinition Height="39*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dataGrid" Margin="20,8,20,3" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Name" Width="90*"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Group" Width="90"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Sales Price" Width="90"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Purchase Price" Width="90"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="On Stock" Width="90"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Search" Margin="30,10,70,10" Grid.Column="2"/>
+        <Button Content="Delete" Margin="130,10,20,10" Grid.Row="2" Grid.Column="2"/>
+        <ComboBox Grid.Column="1"  Margin="10,10,10,10" />
+        <Label Content="Filter" Margin="20,10,0,0"/>
+
     </Grid>
 </Window>
