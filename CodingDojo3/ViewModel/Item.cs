@@ -82,6 +82,12 @@ namespace CodingDojo3.ViewModel
             }
         }*/
 
-        
+        public override string ToString()
+        {
+            //return Name;
+            return Group.Name;
+        }
+
+
     }
 }
