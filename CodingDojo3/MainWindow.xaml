@@ -21,11 +21,12 @@
             <ColumnDefinition Width="245*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="42*"/>
-            <RowDefinition Height="238*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="217*"/>
             <RowDefinition Height="39*"/>
         </Grid.RowDefinitions>
-        <DataGrid Margin="20,8,20,3" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ItemList}" SelectedItem="{Binding SelectedItem}" >
+        <DataGrid Margin="20,7,20,3" AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding ItemList}" SelectedItem="{Binding SelectedItem}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="90*" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Group" Width="90" Binding="{Binding Group.Name}"/>
@@ -34,16 +35,18 @@
                 <DataGridTemplateColumn Header="On Stock" Width="60">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Ellipse Fill="{Binding OnStock, Converter={StaticResource StockConvert}}" />
+                            <Ellipse Fill="{Binding OnStock, Converter={StaticResource StockConvert}}" Width="16"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Search" Margin="30,10,70,10" Grid.Column="2" Command="{Binding SearchBtnClickedCommand}"/>
-        <Button Content="Delete" Margin="130,10,20,10" Grid.Row="2" Grid.Column="2" Command="{Binding DeleteBtnClickedCommand}" />
-        <ComboBox Grid.Column="1" Margin="10,10,10,10" IsReadOnly="True" SelectedItem="{Binding SelectedName}"  ItemsSource="{Binding ComboBoxList}"  />
-        <Label Content="Filter" Margin="20,10,0,0"/>
-
+        <Button Content="Delete" Margin="129.527,10,20,10" Grid.Row="3" Grid.Column="2" Command="{Binding DeleteBtnClickedCommand}" />
+        <ComboBox Grid.Column="1" Margin="5.166,5,10.473,0" IsReadOnly="True" SelectedItem="{Binding SelectedName}"  ItemsSource="{Binding ComboBoxList}" Height="24" VerticalAlignment="Top"  />
+        <Label Content="Filter" Margin="10,6,9.834,4"/>
+        <Button x:Name="button" Content="Filter" Grid.Column="2" Command="{Binding FilterBtnClickedCommand}" Margin="27.527,5,59,5"/>
+        <Button Content="Search" Margin="27.527,5,59,0" Grid.Column="2" Command="{Binding SearchBtnClickedCommand}" Grid.Row="1"/>
+        <TextBox x:Name="textBox" Grid.Column="1" Margin="6.166,5,9.473,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SearchText}"/>
+        <Label x:Name="label" Content="Suche" HorizontalAlignment="Left" Margin="10,3,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -24,11 +24,13 @@ namespace CodingDojo3.ViewModel
             
         private Item selectedItem; 
         private string selectedName;
+        private string searchText;
 
         private RelayCommand deleteBtnClickedCommand;
         private RelayCommand searchBtnClickedCommand;
+        private RelayCommand filterBtnClickedCommand;
 
-        
+
         public RelayCommand DeleteBtnClickedCommand
         {
             get
@@ -55,6 +57,19 @@ namespace CodingDojo3.ViewModel
            }
         }
 
+        public RelayCommand FilterBtnClickedCommand
+        {
+            get
+            {
+                return filterBtnClickedCommand;
+            }
+
+            set
+            {
+                filterBtnClickedCommand = value;
+            }
+        }
+
         public string SelectedName
         {
            get
@@ -66,6 +81,19 @@ namespace CodingDojo3.ViewModel
            {
                selectedName = value;
            }
+        }
+
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+
+            set
+            {
+                searchText = value;
+            }
         }
 
         public Item SelectedItem
@@ -133,9 +161,11 @@ namespace CodingDojo3.ViewModel
             }
         }
 
+        
+
         public MainViewModel()
         {
-            //Interpretation: Der Filter, der auf dem Namen basiert sein soll, basiert bei mir auf dem Namen der Kategorie bzw. Gruppe
+            //Interpretation: Der Filter, der auf dem Namen basiert sein soll, basiert bei mir auf dem Namen der Kategorie bzw. Gruppe, da das meiner Meinung nach mehr Sinn hat.
 
             LoadAllData();
 
@@ -143,10 +173,28 @@ namespace CodingDojo3.ViewModel
 
             DeleteBtnClickedCommand = new RelayCommand(new Action(DeleteItem));
 
-            SearchBtnClickedCommand = new RelayCommand(new Action(Filter));
+            SearchBtnClickedCommand = new RelayCommand(new Action(Search));
+
+            FilterBtnClickedCommand = new RelayCommand(new Action(Filter));
         }
 
-        
+        private void Search()
+        {
+            foreach (Item i in itemListWithoutDeleted)
+            {
+                if (i.Name.Contains(searchText))
+                {
+                    FilteredList.Add(i);
+                }
+            }
+            itemList.Clear();
+            foreach (Item it in FilteredList)
+            {
+                itemList.Add(it);
+            }
+            filteredList.Clear();
+        }
+
         private void CreateComboBoxList()
         {
             
@@ -208,13 +256,6 @@ namespace CodingDojo3.ViewModel
                 }
                 filteredList.Clear();
             }
-            
-
-        }
-
-    
-        
-
-        
+        }       
     }
 }
