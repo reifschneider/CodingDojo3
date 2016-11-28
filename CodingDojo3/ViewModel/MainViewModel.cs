@@ -19,7 +19,7 @@ namespace CodingDojo3.ViewModel
         private ObservableCollection<Item> itemListWithoutDeleted = new ObservableCollection<Item>();
 
         private ObservableCollection<Item> filteredList = new ObservableCollection<Item>();
-        private ObservableCollection<String> comboBoxList = new ObservableCollection<String>();
+        private ObservableCollection<string> comboBoxList = new ObservableCollection<String>();
 
             
         private Item selectedItem; 
@@ -94,7 +94,7 @@ namespace CodingDojo3.ViewModel
             }
         }
 
-        public ObservableCollection<String> ComboBoxList
+        public ObservableCollection<string> ComboBoxList
         {
            get
            {
@@ -135,8 +135,7 @@ namespace CodingDojo3.ViewModel
 
         public MainViewModel()
         {
-            SampleManager manager = new SampleManager();
-            stocklist = manager.CurrentStock.OnStock;
+            //Interpretation: Der Filter, der auf dem Namen basiert sein soll, basiert bei mir auf dem Namen der Kategorie bzw. Gruppe
 
             LoadAllData();
 
@@ -150,7 +149,7 @@ namespace CodingDojo3.ViewModel
         
         private void CreateComboBoxList()
         {
-
+            
             for (int i = 0; i < itemList.Count; i++)
             {
                 if (i == 0)
@@ -167,6 +166,8 @@ namespace CodingDojo3.ViewModel
 
         private void LoadAllData()
         {
+            SampleManager manager = new SampleManager();
+            stocklist = manager.CurrentStock.OnStock;
             foreach (var i in stocklist)
             {
                 itemList.Add(new Item(i));

@@ -11,6 +11,11 @@ namespace CodingDojo3.ViewModel
     {
         private StockEntry entry;
 
+        public Item()
+        {
+           
+        }
+
         public Item(StockEntry stEntry)
         {
             entry = stEntry;
@@ -69,18 +74,18 @@ namespace CodingDojo3.ViewModel
             }
         }
 
-        /*public int OnStock
+        public int OnStock
         {
             get
             {
-                return entry.SoftwarePackage;
+                return entry.Amount;
             }
 
             set
             {
-                onStock = value;
+                entry.Amount = value;
             }
-        }*/
+        }
 
         public override string ToString()
         {

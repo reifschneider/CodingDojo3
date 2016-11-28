@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodingDojo3"
         xmlns:ViewModel="clr-namespace:CodingDojo3.ViewModel" x:Class="CodingDojo3.MainWindow"
+        xmlns:Converters="clr-namespace:CodingDojo3.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Converters:OnStockConverter x:Key="StockConvert" />
+    </Window.Resources>
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
@@ -27,7 +31,13 @@
                 <DataGridTextColumn Header="Group" Width="90" Binding="{Binding Group.Name}"/>
                 <DataGridTextColumn Header="Sales €" Width="50" Binding="{Binding SalesPrice}"/>
                 <DataGridTextColumn Header="Purchase €" Width="70" Binding="{Binding PurchasePrice}"/>
-                <DataGridTextColumn Header="On Stock" Width="60"/>
+                <DataGridTemplateColumn Header="On Stock" Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Ellipse Fill="{Binding OnStock, Converter={StaticResource StockConvert}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Search" Margin="30,10,70,10" Grid.Column="2" Command="{Binding SearchBtnClickedCommand}"/>
